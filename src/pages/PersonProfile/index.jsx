@@ -24,7 +24,7 @@ function PersonProfile({ handleHirePerson, data }) {
           initialWage={person.wage}
         />
       ) : (
-        <HireForm person={person} handler={handleHirePerson} />
+        <HireForm person={person} handler={handleHirePerson} initialWage={0} />
       )}
     </article>
   );
