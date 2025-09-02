@@ -70,7 +70,9 @@ export default function App() {
       <Routes>
         <Route
           path="/"
-          element={<Dashboard people={people} hiredPeople={hiredPeople} />}
+          element={
+            <Dashboard people={people} hiredPeople={hiredPeople} data={data} />
+          }
         />
         <Route
           path="/view/:id"

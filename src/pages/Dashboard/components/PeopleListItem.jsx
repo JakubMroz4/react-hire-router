@@ -8,7 +8,7 @@ function PeopleListItem({ person, id }) {
   };
 
   return (
-    <li onClick={handleClick}>
+    <li onClick={handleClick} className="peopleListItem">
       <h3>
         {person.name.first} {person.name.last}
       </h3>
