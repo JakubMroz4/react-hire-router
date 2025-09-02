@@ -32,19 +32,43 @@ export default function App() {
 
   const navigate = useNavigate();
 
-  const handleHirePerson = (person) => {
+  const handleHirePerson = (person, wage) => {
     setPeople((peopleArray) => {
       const peopleArrayCopy = [...peopleArray];
       const index = peopleArrayCopy.findIndex((p) => p === person);
 
-      if (index === -1) return peopleArrayCopy;
+      if (index === -1) {
+        console.log("FAILED HIRE");
+        changeWage(person, wage);
+        return peopleArrayCopy;
+      }
 
       const [hired] = peopleArrayCopy.splice(index, 1);
+
+      hired.wage = wage;
 
       setHiredPeople((hiredPeopleArray) => [...hiredPeopleArray, hired]);
       return peopleArrayCopy;
     });
     navigate(`/`);
+  };
+
+  const changeWage = (person, wage) => {
+    const index = hiredPeople.findIndex((p) => p === person);
+
+    if (index === -1) {
+      console.log("FAILED CHANGE WAGE");
+      return;
+    }
+
+    const hired = hiredPeople[index];
+    hired.wage = wage;
+
+    setHiredPeople((hiredPeopleArray) => {
+      const updatedArray = [...hiredPeopleArray];
+      updatedArray[index] = hired;
+      return updatedArray;
+    });
   };
 
   if (loading) {
