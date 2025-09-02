@@ -32,19 +32,19 @@ export default function App() {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(`/view/${id}`);
-  };
-
-  const handleHirePerson = (id) => {
+  const handleHirePerson = (person) => {
     setPeople((peopleArray) => {
       const peopleArrayCopy = [...peopleArray];
-      const [hired] = peopleArrayCopy.splice(id, 1);
+      const index = peopleArrayCopy.findIndex((p) => p === person);
+
+      if (index === -1) return peopleArrayCopy;
+
+      const [hired] = peopleArrayCopy.splice(index, 1);
 
       setHiredPeople((hiredPeopleArray) => [...hiredPeopleArray, hired]);
-      navigate(`/`);
       return peopleArrayCopy;
     });
+    navigate(`/`);
   };
 
   if (loading) {

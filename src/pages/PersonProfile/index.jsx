@@ -17,7 +17,7 @@ function PersonProfile({ handleHirePerson, data }) {
       <h2>
         {person.name.first} {person.name.last}
       </h2>
-      <HireForm id={id} handler={handleHirePerson} />
+      <HireForm person={person} handler={handleHirePerson} />
     </article>
   );
 }
